@@ -1,0 +1,15 @@
+services:
+ minio:
+    image: minio/minio
+    command: server --address ":9000" --console-address ":9001" /data
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      - MINIO_ACCESS_KEY=${MINIO_ACCESS_KEY}
+      - MINIO_SECRET_KEY=${MINIO_SECRET_KEY}
+    volumes:
+      - minio_data:/data
+
+volumes:
+  minio_data:
